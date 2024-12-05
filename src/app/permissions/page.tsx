@@ -17,7 +17,7 @@ const Permissions = () => {
     speaker: false,
   });
 
-  const steps = ["camera", "microphone", "screen", "speaker"];
+  const steps: Array<"camera" | "microphone" | "screen" | "speaker"> = ["camera", "microphone", "screen", "speaker"];
   const allPermissionsGranted = Object.values(permissions).every(Boolean); // Check if all permissions are granted
 
   const requestPermission = async (step: string) => {
@@ -63,8 +63,8 @@ const Permissions = () => {
     }
   }, [currentStep]);
 
-  const handleCheckboxClick = async (step: string) => {
-    if (!permissions[step]) {
+  const handleCheckboxClick = async (step: keyof typeof permissions) => {
+    if (!permissions[step as keyof typeof permissions]) {
       await requestPermission(step);
     }
   };
@@ -76,11 +76,11 @@ const Permissions = () => {
         Please allow all permissions to proceed.
       </h2>
       <ul className="space-y-2">
-        {steps.map((step, index) => (
+        {steps.map((step: keyof typeof permissions) => (
           <li
             key={step}
-            className={`flex items-center gap-4 border w-[400px] h-[60px] gap-4 justify-between px-6 py-3 rounded-lg 
-              ${permissions[step] ? "border-gray-500" : "border-gray-200"}`}
+            className={`flex items-center  border w-[400px] h-[60px] gap-4 justify-between px-6 py-3 rounded-lg 
+              ${permissions[step as keyof typeof permissions] ? "border-gray-500" : "border-gray-200"}`}
           >
             {step === "camera" ? (
               <BsCameraVideo className="text-2xl opacity-80" />

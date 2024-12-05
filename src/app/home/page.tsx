@@ -12,7 +12,6 @@ const Home = () => {
           <li>Ensure your audio and video permissions are enabled.</li>
           <li>Answer all questions sincerely and confidently.</li>
           <li>Complete the test without interruptions.</li>
-          
         </ul>
         <Link href="/permissions">
           <button className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
